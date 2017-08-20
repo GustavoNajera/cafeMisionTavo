@@ -4,20 +4,45 @@ require 'Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 
-//Get por defecto
-$app->get(
-    '/',
-    function () {
-        $template = "hola mundo Tavo";
-        echo $template;
-    }
-);
+/*
+ * Get por defecto y ventana principal
+ */
+$app->get('/', function () use ($app) {
+    $app->render('cliente/index.php');
+});
+
+
+/*
+ * Vista referente a testimonios
+ */
+$app->get('/testimonials', function () use ($app) {
+    $app->render('cliente/testimonials.php');
+});
+
+/*
+ * Vista referente a acerca de
+ */
+$app->get('/about', function () use ($app) {
+    $app->render('cliente/about.php');
+});
+
+/*
+ * Vista referente a servicios
+ */
+$app->get('/service', function () use ($app) {
+    $app->render('cliente/service.php');
+});
+
+
 
 //View
 // Render PHP template in route
+/*
 $app->get('/usuario/:nombre/:apellido', function ($nombre,$apellido) use ($app) {
     $app->render('profile.php', array('nombre' => $nombre,'apellido' => $apellido));
 });
+*/
+
 
 
 /*
