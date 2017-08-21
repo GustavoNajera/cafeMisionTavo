@@ -1,74 +1,23 @@
 <?php
+        
+$ruta = explode("/", $_SERVER["REQUEST_URI"])[2];
 
-require 'Slim/Slim.php';
-\Slim\Slim::registerAutoloader();
-$app = new \Slim\Slim();
+//Se configura la ruta de las vistas
+$ruteView = "views";
 
-/*
- * Get por defecto y ventana principal
- */
-$app->get('/', function () use ($app) {
-    $app->render('cliente/index.php');
-});
+//Se configuran las rutas
+$routes = [
+    "" => "cliente/index.php",
+    "service" => "cliente/service.php",
+    "about" => "cliente/about.php",
+    "product" => "cliente/singleProduct.php",
+    "testimonials" => "cliente/testimonials.php"
+];
 
+$filtrado = "";
+if(count(explode("-",$ruta)) > 1){
+    $filtrado = explode("-",$ruta)[1];
+    $ruta = explode("-",$ruta)[0];
+}
 
-/*
- * Vista referente a testimonios
- */
-$app->get('/testimonials', function () use ($app) {
-    $app->render('cliente/testimonials.php');
-});
-
-/*
- * Vista referente a acerca de
- */
-$app->get('/about', function () use ($app) {
-    $app->render('cliente/about.php');
-});
-
-/*
- * Vista referente a servicios
- */
-$app->get('/service', function () use ($app) {
-    $app->render('cliente/service.php');
-});
-
-
-
-//View
-// Render PHP template in route
-/*
-$app->get('/usuario/:nombre/:apellido', function ($nombre,$apellido) use ($app) {
-    $app->render('profile.php', array('nombre' => $nombre,'apellido' => $apellido));
-});
-*/
-
-
-
-/*
-// POST route
-$app->post(
-    '/post',
-    function () {
-        echo 'This is a POST route';
-    }
-);
-// PUT route
-$app->put(
-    '/put',
-    function () {
-        echo 'This is a PUT route';
-    }
-);
-// PATCH route
-$app->patch('/patch', function () {
-    echo 'This is a PATCH route';
-});
-// DELETE route
-$app->delete(
-    '/delete',
-    function () {
-        echo 'This is a DELETE route';
-    }
-);*/
-$app->run();
+include_once "./" . $ruteView. "/" . $routes[$ruta];

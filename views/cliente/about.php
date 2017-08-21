@@ -8,7 +8,7 @@
             <main id="perspective" class="page-content">
                 <div class="content-wrapper">
                     <div class="page-header page-header-perspective">
-                        <div class="page-header-left"><a href="./" class="brand"><img src="images/logo-white-185x41.png" alt="" width="185" height="41"/></a></div>
+                        <div class="page-header-left"><a href="./" class="brand"><img src="public/images/logo-white-185x41.png" alt="" width="185" height="41"/></a></div>
                         <div class="page-header-right">
                             <div class="booking-control"><a href="shop.html" class="btn btn-xs btn-circle btn-primary">BUY NOW</a></div>
                             <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
@@ -242,9 +242,9 @@
                                             <p class="text-highlighted">Coffee Shop is a cosy place where friends meet to share coffee, cakes and light meals. At night, it is transformed into a vibey eatery.</p>
                                         </div>
                                         <ul class="footer-navigation footer-navigation-horizontal">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="./">Home</a></li>
                                             <li class="active"><a href="about.html">About</a></li>
-                                            <li><a href="services.html">Services</a></li>
+                                            <li><a href="./services">Services</a></li>
                                             <li><a href="blog.html">Blog</a></li>
                                             <li><a href="shop.html">Shop</a></li>
                                             <li><a href="contacts-1.html">Contacts</a></li>

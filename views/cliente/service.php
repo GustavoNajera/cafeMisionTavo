@@ -8,7 +8,7 @@
           <main id="perspective" class="page-content">
             <div class="content-wrapper">
               <div class="page-header page-header-perspective">
-                <div class="page-header-left"><a href="index.html" class="brand"><img src="images/logo-white-185x41.png" alt="" width="185" height="41"/></a></div>
+                <div class="page-header-left"><a href="./" class="brand"><img src="public/images/logo-white-185x41.png" alt="" width="185" height="41"/></a></div>
                 <div class="page-header-right">
                   <div class="booking-control"><a href="shop.html" class="btn btn-xs btn-circle btn-primary">BUY NOW</a></div>
                   <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>

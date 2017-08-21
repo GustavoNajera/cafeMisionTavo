@@ -15,7 +15,7 @@
                 <div class="range">
                   <div class="cell-sm-10 cell-md-9 cell-lg-7">
                     <h1>Elite Coffee Brands</h1>
-                    <p class="large">Coffee Shop is the place where you can get flavorful coffee strains from global elite brands and roasters at very affordable price.</p><a href="about.html" class="btn btn-style-1 btn-primary">read more</a>
+                    <p class="large">Coffee Shop is the place where you can get flavorful coffee strains from global elite brands and roasters at very affordable price.</p><a href="./about" class="btn btn-style-1 btn-primary">read more</a>
                   </div>
                 </div>
               </div>
@@ -30,7 +30,7 @@
                     <h2>WHO WE ARE</h2>
                     <div class="p text-width-smallest">
                       <p class="big">We are a team of dedicated coffee fans who celebrate exceptional coffee brands and roasters by providing our guests the unique opportunity to try coffee drinks of the highest quality.</p>
-                    </div><a href="about.html" class="btn btn-sm btn-style-1 btn-primary">learn more</a>
+                    </div><a href="./about" class="btn btn-sm btn-style-1 btn-primary">learn more</a>
                   </div>
                 </div>
                 <div class="cell-md-7 cell-lg-6">
@@ -59,7 +59,7 @@
                 <div class="cell-md-6 cell-md-6-mod-1 image-wrap-left bg-gray-dark">
                   <div class="image-wrap-inner">
                     <h2>OUR<br>SERVICES</h2>
-                    <p class="big">We provide a variety of services both to our new and regular customers. If you can think of anything connected with coffee, then we can offer it at our Coffee Shop.</p><a href="services.html" class="btn btn-style-1 btn-primary">read more</a>
+                    <p class="big">We provide a variety of services both to our new and regular customers. If you can think of anything connected with coffee, then we can offer it at our Coffee Shop.</p><a href="./service" class="btn btn-style-1 btn-primary">read more</a>
                   </div>
                 </div>
                 <div style="background-image: url(public/images/home-three-3-1011x800.jpg)" class="cell-md-6 cell-md-6-mod-2 image-wrap-right bg-gray-dark bg-image">
@@ -69,7 +69,7 @@
                         <article class="box-icon">
                           <figure class="box-icon-image"><img src="public/images/icon-service-3-84x84.png" alt="" width="84" height="84"/>
                           </figure>
-                          <p class="box-icon-header"><a href="services.html">SELECTED coffee beans</a></p>
+                          <p class="box-icon-header"><a href="./service">SELECTED coffee beans</a></p>
                           <p class="box-icon-text">Enjoy the aroma of selected coffee beans available at our shop.</p>
                         </article>
                       </div>
@@ -77,7 +77,7 @@
                         <article class="box-icon">
                           <figure class="box-icon-image"><img src="public/images/icon-service-4-84x84.png" alt="" width="84" height="84"/>
                           </figure>
-                          <p class="box-icon-header"><a href="services.html">elite coffee</a></p>
+                          <p class="box-icon-header"><a href="./service">elite coffee</a></p>
                           <p class="box-icon-text">Take a sip of Elite Coffee, and  revel in the different tastes.</p>
                         </article>
                       </div>
@@ -85,7 +85,7 @@
                         <article class="box-icon">
                           <figure class="box-icon-image"><img src="public/images/icon-service-1-84x84.png" alt="" width="84" height="84"/>
                           </figure>
-                          <p class="box-icon-header"><a href="services.html">Tasty coffee</a></p>
+                          <p class="box-icon-header"><a href="./service">Tasty coffee</a></p>
                           <p class="box-icon-text">At Coffee Shop you can find lots of tasty coffee flavors</p>
                         </article>
                       </div>
@@ -93,7 +93,7 @@
                         <article class="box-icon">
                           <figure class="box-icon-image"><img src="public/images/icon-service-2-84x84.png" alt="" width="84" height="84"/>
                           </figure>
-                          <p class="box-icon-header"><a href="services.html">cooking coffee</a></p>
+                          <p class="box-icon-header"><a href="./service">cooking coffee</a></p>
                           <p class="box-icon-text">If you prefer to cook coffee, we have something special for you.</p>
                         </article>
                       </div>
@@ -180,7 +180,7 @@
                   <div class="range range-30">
                     <div class="cell-sm-6 cell-md-4 height-fill">
                       <div class="thumbnail-card"><img src="public/images/barbers-1-370x310.jpg" alt="" width="370" height="310" class="thumbnail-card-image"/>
-                        <div class="thumbnail-card-body"><a href="single-product.html" class="thumbnail-card-header">Espresso</a>
+                        <div class="thumbnail-card-body"><a href="./product-Espresso" class="thumbnail-card-header">Espresso</a>
                           <div class="thumbnail-card-text">
                             <p>One of the most popular coffee variations nowadays.</p>
                           </div>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="cell-sm-6 cell-md-4 height-fill">
                       <div class="thumbnail-card"><img src="public/images/barbers-2-370x310.jpg" alt="" width="370" height="310" class="thumbnail-card-image"/>
-                        <div class="thumbnail-card-body"><a href="single-product.html" class="thumbnail-card-header">Cappuccino</a>
+                          <div class="thumbnail-card-body"><a href="./product-Cappuccino" class="thumbnail-card-header">Cappuccino</a>
                           <div class="thumbnail-card-text">
                             <p>This famous Italian coffee drink has a delicate taste and aroma.</p>
                           </div>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="cell-sm-6 cell-md-4 height-fill">
                       <div class="thumbnail-card"><img src="public/images/barbers-3-370x310.jpg" alt="" width="370" height="310" class="thumbnail-card-image"/>
-                        <div class="thumbnail-card-body"><a href="single-product.html" class="thumbnail-card-header">Americano</a>
+                        <div class="thumbnail-card-body"><a href="./product-Americano" class="thumbnail-card-header">Americano</a>
                           <div class="thumbnail-card-text">
                             <p>An espresso-based drink designed to resemble coffee in a cup.</p>
                           </div>
@@ -400,9 +400,9 @@
                   <ul style="max-width: 390px;" class="footer-navigation row footer-navigation-vertical">
                     <li class="col-xs-6"><a href="index.html">Home</a></li>
                     <li class="col-xs-6"><a href="blog.html">Blog</a></li>
-                    <li class="col-xs-6"><a href="about.html">About</a></li>
+                    <li class="col-xs-6"><a href="./about">About</a></li>
                     <li class="col-xs-6"><a href="shop.html">Shop</a></li>
-                    <li class="col-xs-6"><a href="services.html">Services</a></li>
+                    <li class="col-xs-6"><a href="./service">Services</a></li>
                     <li class="col-xs-6"><a href="contacts-1.html">Contacts</a></li>
                   </ul>
                 </div>
