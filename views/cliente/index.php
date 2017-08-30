@@ -9,13 +9,38 @@
           
             <?php include 'views/general/topMenu.php'; ?>
             
+            <?php
+                //Se obtiene la información de la empresa
+                include_once './business/OrganizationBusiness.php';
+                include_once './business/ProcessBusiness.php';
+                include_once './business/TextPageBusiness.php';
+                include_once './business/CommentBusiness.php';
+                include_once './business/ProductBusiness.php';
+                
+                $organization = (new OrganizationBusiness())->getOrganizationBusiness();
+                $listProcess = (new ProcessBusiness())->getAllprocessBusiness();
+                $listComment = (new CommentBusiness())->getAllCommentBusiness();
+                $listProduct = (new ProductBusiness())->getAllproductBusiness();
+                
+                //Se obtienen los textos en el lenguaje elegido
+                $text = (new TextPageBusiness())->getTextByPageBusiness("index");
+        
+                //Se obtiene la ruta de las imágenes
+                $pathTem = json_decode(file_get_contents("./config.json"),true)["IMG"];
+                $pathAbout = $pathTem["imgAbout"];
+                $pathProduct = $pathTem["imgProduct"];
+                $pathUser = $pathTem["imgUser"];
+                $pathProcess = $pathTem["imgProcess"];
+                
+            ?>
+            
           <section style="background-image: url(public/images/bg-image-4.jpg);" class="jumbotron-custom jumbotron-custom-2 bg-gray-base bg-image">
             <div class="jumbotron-custom-content">
               <div class="shell">
                 <div class="range">
                   <div class="cell-sm-10 cell-md-9 cell-lg-7">
-                    <h1>Elite Coffee Brands</h1>
-                    <p class="large">Coffee Shop is the place where you can get flavorful coffee strains from global elite brands and roasters at very affordable price.</p><a href="./about" class="btn btn-style-1 btn-primary">read more</a>
+                    <h1><?=$text["TituloPrincipal"]?></h1>
+                    <p class="large"><?=$organization->history?></p><a href="./about" class="btn btn-style-1 btn-primary"><?=$text["leerMas"]?></a>
                   </div>
                 </div>
               </div>
@@ -27,24 +52,24 @@
               <div class="range range-md-reverse range-xs-middle range-md-right range-50">
                 <div class="cell-md-5 cell-lg-4">
                   <div class="inset-1">
-                    <h2>WHO WE ARE</h2>
+                    <h2><?=$text["historia"]?></h2>
                     <div class="p text-width-smallest">
-                      <p class="big">We are a team of dedicated coffee fans who celebrate exceptional coffee brands and roasters by providing our guests the unique opportunity to try coffee drinks of the highest quality.</p>
-                    </div><a href="./about" class="btn btn-sm btn-style-1 btn-primary">learn more</a>
+                      <p class="big"><?=$organization->history?></p>
+                    </div><a href="./about" class="btn btn-sm btn-style-1 btn-primary"><?=$text["leerMas"]?></a>
                   </div>
                 </div>
                 <div class="cell-md-7 cell-lg-6">
                   <div class="row row-gutter-custom range-15">
                     <div class="col-xs-4">
-                      <figure class="figure-fullwidth"><img src="public/images/about-1-300x460.jpg" alt="" width="300" height="460"/>
+                        <figure class="figure-fullwidth"><img src="<?=$pathAbout?>about-1-300x460.jpg" alt="" width="300" height="460"/>
                       </figure>
                     </div>
                     <div class="col-xs-4">
-                      <figure class="figure-fullwidth"><img src="public/images/about-2-300x460.jpg" alt="" width="300" height="460"/>
+                      <figure class="figure-fullwidth"><img src="<?=$pathAbout?>about-2-300x460.jpg" alt="" width="300" height="460"/>
                       </figure>
                     </div>
                     <div class="col-xs-4">
-                      <figure class="figure-fullwidth"><img src="public/images/about-3-300x460.jpg" alt="" width="300" height="460"/>
+                      <figure class="figure-fullwidth"><img src="<?=$pathAbout?>about-3-300x460.jpg" alt="" width="300" height="460"/>
                       </figure>
                     </div>
                   </div>
@@ -58,45 +83,24 @@
               <div class="range range-condensed">
                 <div class="cell-md-6 cell-md-6-mod-1 image-wrap-left bg-gray-dark">
                   <div class="image-wrap-inner">
-                    <h2>OUR<br>SERVICES</h2>
-                    <p class="big">We provide a variety of services both to our new and regular customers. If you can think of anything connected with coffee, then we can offer it at our Coffee Shop.</p><a href="./service" class="btn btn-style-1 btn-primary">read more</a>
+                    <h2><?=$text["procesos"]?></h2>
+                    <p class="big"><?=$text["descripcionProcesos"]?></p>
                   </div>
                 </div>
                 <div style="background-image: url(public/images/home-three-3-1011x800.jpg)" class="cell-md-6 cell-md-6-mod-2 image-wrap-right bg-gray-dark bg-image">
                   <div class="image-wrap-inner">
                     <div class="range range-condensed range-inner-bordered">
-                      <div class="cell-xs-6">
-                        <article class="box-icon">
-                          <figure class="box-icon-image"><img src="public/images/icon-service-3-84x84.png" alt="" width="84" height="84"/>
-                          </figure>
-                          <p class="box-icon-header"><a href="./service">SELECTED coffee beans</a></p>
-                          <p class="box-icon-text">Enjoy the aroma of selected coffee beans available at our shop.</p>
-                        </article>
-                      </div>
-                      <div class="cell-xs-6">
-                        <article class="box-icon">
-                          <figure class="box-icon-image"><img src="public/images/icon-service-4-84x84.png" alt="" width="84" height="84"/>
-                          </figure>
-                          <p class="box-icon-header"><a href="./service">elite coffee</a></p>
-                          <p class="box-icon-text">Take a sip of Elite Coffee, and  revel in the different tastes.</p>
-                        </article>
-                      </div>
-                      <div class="cell-xs-6">
-                        <article class="box-icon">
-                          <figure class="box-icon-image"><img src="public/images/icon-service-1-84x84.png" alt="" width="84" height="84"/>
-                          </figure>
-                          <p class="box-icon-header"><a href="./service">Tasty coffee</a></p>
-                          <p class="box-icon-text">At Coffee Shop you can find lots of tasty coffee flavors</p>
-                        </article>
-                      </div>
-                      <div class="cell-xs-6">
-                        <article class="box-icon">
-                          <figure class="box-icon-image"><img src="public/images/icon-service-2-84x84.png" alt="" width="84" height="84"/>
-                          </figure>
-                          <p class="box-icon-header"><a href="./service">cooking coffee</a></p>
-                          <p class="box-icon-text">If you prefer to cook coffee, we have something special for you.</p>
-                        </article>
-                      </div>
+                        <?php foreach ($listProcess as $process){ ?>
+                            <div class="cell-xs-6">
+                                <article class="box-icon">
+                                    <figure class="box-icon-image"><img src="<?=$pathProcess . $process->image ?>" alt="" width="84" height="84"/>
+                                    </figure>
+                                    <p class="box-icon-header"><?=$process->name?></p>
+                                    <p class="box-icon-text"><?=$process->description?></p>
+                                </article>
+                            </div>
+                        <?php } ?>
+                        
                     </div>
                   </div>
                 </div>
@@ -108,59 +112,29 @@
             <div class="shell">
               <div class="range range-sm-center range-75">
                 <div class="cell-xs-12">
-                  <h2>TESTIMONIALS</h2>
+                  <h2><?=$text["testimonios"]?></h2>
                   <div class="p text-width-medium">
-                    <p class="big">These reviews that our clients have recently submitted are the best way to learn more about our level of service and customer support.</p>
+                    <p class="big"><?=$text["descripcionTestimonios"]?></p>
                   </div>
                 </div>
                 <div class="cell-xs-12">
                   <!-- Owl Carousel-->
                   <div data-items="1" data-stage-padding="0" data-loop="true" data-margin="20" data-xs-margin="30" data-mouse-drag="false" data-nav="true" data-dots="true" data-animation-in="fadeIn" data-animation-out="fadeOut" class="owl-carousel owl-carousel-modern owl-style-1">
-                    <div class="item">
-                      <blockquote class="quote-centered">
-                        <div class="quote-centered-avatar"><img src="public/images/testimonials-1-100x100.jpg" alt="" width="100" height="100"/>
+                    
+                      
+                    <?php foreach ($listComment as $comment){ ?>
+                        <div class="item">
+                            <blockquote class="quote-centered">
+                                <div class="quote-centered-avatar"><img src="<?=$pathUser . $comment->user->image ?>" alt="" width="100" height="100"/>
+                                </div>
+                                <cite><?=$comment->user->user?></cite>
+                                <p class="quote-centered-text">
+                                    <q><?=$comment->comment?></q>
+                                </p>
+                            </blockquote>
                         </div>
-                        <cite>Katherine Smith</cite>
-                        <p class="quote-centered-text">
-                          <q>I visited Coffee Shop last week during the day with my laptop so that I could get some work of my own done and enjoy some coffee shop atmosphere. This place was perfect! The coffee was great, and the truffles were ridiculously good. I recommend this place to everybody.</q>
-                        </p>
-                        <ul class="inline-list inline-list-md">
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-facebook"></a></li>
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-twitter"></a></li>
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-linkedin"></a></li>
-                        </ul>
-                      </blockquote>
-                    </div>
-                    <div class="item">
-                      <blockquote class="quote-centered">
-                        <div class="quote-centered-avatar"><img src="public/images/testimonials-2-100x100.jpg" alt="" width="100" height="100"/>
-                        </div>
-                        <cite>Julia Parker</cite>
-                        <p class="quote-centered-text">
-                          <q>I tried coffee here for the first time just the other day. The location may seem hidden but it is actually very easy to find Coffee Shop on the map. I ordered just a medium regular coffee and it was very good. The lady who poured the coffee was very friendly. I will definitely be back!</q>
-                        </p>
-                        <ul class="inline-list inline-list-md">
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-facebook"></a></li>
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-twitter"></a></li>
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-linkedin"></a></li>
-                        </ul>
-                      </blockquote>
-                    </div>
-                    <div class="item">
-                      <blockquote class="quote-centered">
-                        <div class="quote-centered-avatar"><img src="public/images/testimonials-3-100x100.jpg" alt="" width="100" height="100"/>
-                        </div>
-                        <cite>Anthony Smith</cite>
-                        <p class="quote-centered-text">
-                          <q>I love the coffee and atmosphere at your coffee shop. I attend a meeting there on most Monday mornings. When I arrive, I’m greeted with a smile and the Barista always takes the time to fix my coffee just as I want it. My favorite drink is the Carmel Mocha.</q>
-                        </p>
-                        <ul class="inline-list inline-list-md">
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-facebook"></a></li>
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-twitter"></a></li>
-                          <li><a href="#" class="icon icon-xs link-gray-base fa-linkedin"></a></li>
-                        </ul>
-                      </blockquote>
-                    </div>
+                    <?php } ?>
+                      
                   </div>
                 </div>
               </div>
@@ -171,58 +145,33 @@
             <div class="shell">
               <div class="range range-50">
                 <div class="cell-xs-12">
-                  <h2>OUR products</h2>
+                  <h2><?=$text["productos"]?></h2>
                   <div class="p text-width-medium">
-                    <p class="big">Feel the real taste of coffee with our products. We offer high quality and tasty coffee variations from widely known brands.</p>
+                    <p class="big"><?=$text["descripcionProductos"]?></p>
                   </div>
                 </div>
                 <div class="cell-xs-12">
                   <div class="range range-30">
-                    <div class="cell-sm-6 cell-md-4 height-fill">
-                      <div class="thumbnail-card"><img src="public/images/barbers-1-370x310.jpg" alt="" width="370" height="310" class="thumbnail-card-image"/>
-                        <div class="thumbnail-card-body"><a href="./product-Espresso" class="thumbnail-card-header">Espresso</a>
-                          <div class="thumbnail-card-text">
-                            <p>One of the most popular coffee variations nowadays.</p>
+                    
+                      
+                      
+                    <?php foreach ($listProduct as $product){?>
+                        <div class="cell-sm-6 cell-md-4 height-fill">
+                          <div class="thumbnail-card"><img src="<?=($pathProduct.$product->image)?>" alt="" width="370" height="310" class="thumbnail-card-image"/>
+                              <div class="thumbnail-card-body"><a href="./product-<?=$product->nameproduct?>" class="thumbnail-card-header"><?=$product->nameproduct?></a>
+                              <div class="thumbnail-card-text">
+                                <p><?=$product->description?></p>
+                              </div>
+
+                            </div>
                           </div>
-                          <ul class="inline-list inline-list-md">
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-facebook"></a></li>
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-twitter"></a></li>
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-linkedin"></a></li>
-                          </ul>
                         </div>
-                      </div>
-                    </div>
-                    <div class="cell-sm-6 cell-md-4 height-fill">
-                      <div class="thumbnail-card"><img src="public/images/barbers-2-370x310.jpg" alt="" width="370" height="310" class="thumbnail-card-image"/>
-                          <div class="thumbnail-card-body"><a href="./product-Cappuccino" class="thumbnail-card-header">Cappuccino</a>
-                          <div class="thumbnail-card-text">
-                            <p>This famous Italian coffee drink has a delicate taste and aroma.</p>
-                          </div>
-                          <ul class="inline-list inline-list-md">
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-facebook"></a></li>
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-twitter"></a></li>
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-linkedin"></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="cell-sm-6 cell-md-4 height-fill">
-                      <div class="thumbnail-card"><img src="public/images/barbers-3-370x310.jpg" alt="" width="370" height="310" class="thumbnail-card-image"/>
-                        <div class="thumbnail-card-body"><a href="./product-Americano" class="thumbnail-card-header">Americano</a>
-                          <div class="thumbnail-card-text">
-                            <p>An espresso-based drink designed to resemble coffee in a cup.</p>
-                          </div>
-                          <ul class="inline-list inline-list-md">
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-facebook"></a></li>
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-twitter"></a></li>
-                            <li><a href="#" class="icon icon-xs link-gray-base fa-linkedin"></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                    <?php }?>
+                      
+                    
                   </div>
                 </div>
-                <div class="cell-xs-12"><a href="shop.html" class="btn btn-sm btn-style-1 btn-primary">VIEW ALL products</a></div>
+                <div class="cell-xs-12"><a href="./products" class="btn btn-sm btn-style-1 btn-primary"><?=$text["leerMas"]?></a></div>
               </div>
             </div>
           </section>
@@ -231,10 +180,10 @@
             <div class="shell">
               <div class="range range-sm-center range-75">
                 <div class="cell-xs-12">
-                  <h2>latest blog posts</h2>
-                  <div class="p text-width-medium">
-                    <p class="big">Coffee Shop is not only a place where you can get a hot and tasty coffee. Our team members also write interesting articles on everything concerning coffee.</p>
-                  </div>
+                    <h2><?=$text["sobreNosotros"]?></h2>
+                    <div class="p text-width-medium">
+                        <p class="big"><?=$text["descriSobreNosotros"]?></p>
+                    </div>
                 </div>
                 <div class="cell-xs-12">
                   <div data-arrows="false" data-loop="true" data-dots="true" data-swipe="true" data-autoplay="false" data-items="1" data-lg-items="3" data-center-mode="true" data-center-padding="0.0" class="slick-slider carousel-center-mode">
@@ -242,21 +191,12 @@
                       <div class="slick-slide-inner">
                         <article class="post-classic"><img src="public/images/blog-2-770x330.jpg" alt="" width="770" height="330" class="post-classic-image"/>
                           <div class="post-classic-body">
-                            <p class="post-classic-title"><a href="single-post.html">Advantages and Disadvantages of Coffee</a></p>
+                            <p class="post-classic-title"><?=$text["mision"]?></p>
                             <div class="post-classic-text">
-                              <p>It seems that one minute drinking coffee is bad for you, the next minute coffee is good for you. Still now with all the evidence coming to light that it’s good for your health, it doesn’t take...</p>
+                              <p><?=$organization->mission?></p>
                             </div>
                             <div class="post-classic-footer">
-                              <div class="post-classic-footer-left"><a href="single-post.html" class="btn btn-xs btn-primary btn-circle">READ MORE</a></div>
-                              <div class="post-classic-footer-right">
-                                <ul class="post-classic-meta">
-                                  <li><span class="icon icon-xxs icon-primary fa fa-heart"></span><span>24</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-eye"></span><span>132</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-calendar-plus-o"></span>
-                                    <time datetime="2016-08-26">26.08.2016</time>
-                                  </li>
-                                </ul>
-                              </div>
+                              <div class="post-classic-footer-left"><a href="./about" class="btn btn-xs btn-primary btn-circle"><?=$text["leerMas"]?></a></div>
                             </div>
                           </div>
                         </article>
@@ -266,21 +206,12 @@
                       <div class="slick-slide-inner">
                         <article class="post-classic"><img src="public/images/blog-3-770x330.jpg" alt="" width="770" height="330" class="post-classic-image"/>
                           <div class="post-classic-body">
-                            <p class="post-classic-title"><a href="single-post.html">What is the Best Coffee in the World?</a></p>
+                            <p class="post-classic-title"><?=$text["vision"]?></p>
                             <div class="post-classic-text">
-                              <p>Wondering what is the best coffee in the world? Well, we know what it is, and we are ready to share it with you. It is Drumroll speciality coffee. Freshly roasted high quality coffee beans from one of the dozens...</p>
+                              <p><?=$organization->vission?></p>
                             </div>
                             <div class="post-classic-footer">
-                              <div class="post-classic-footer-left"><a href="single-post.html" class="btn btn-xs btn-primary btn-circle">READ MORE</a></div>
-                              <div class="post-classic-footer-right">
-                                <ul class="post-classic-meta">
-                                  <li><span class="icon icon-xxs icon-primary fa fa-heart"></span><span>24</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-eye"></span><span>132</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-calendar-plus-o"></span>
-                                    <time datetime="2016-08-26">26.08.2016</time>
-                                  </li>
-                                </ul>
-                              </div>
+                              <div class="post-classic-footer-left"><a href="./about" class="btn btn-xs btn-primary btn-circle"><?=$text["leerMas"]?></a></div>
                             </div>
                           </div>
                         </article>
@@ -290,21 +221,12 @@
                       <div class="slick-slide-inner">
                         <article class="post-classic"><img src="public/images/blog-1-770x330.jpg" alt="" width="770" height="330" class="post-classic-image"/>
                           <div class="post-classic-body">
-                            <p class="post-classic-title"><a href="single-post.html">Top 5 Facts You Didn’t Know About Coffee</a></p>
+                            <p class="post-classic-title"><a href="single-post.html"><?=$text["produccion"]?></a></p>
                             <div class="post-classic-text">
-                              <p>If you know everything there is to know about coffee, then you may know these – in which case, the post title would be wrong. But in any case, this is a list of 5 facts about coffee that...</p>
+                              <p><?=$organization->production?></p>
                             </div>
                             <div class="post-classic-footer">
-                              <div class="post-classic-footer-left"><a href="single-post.html" class="btn btn-xs btn-primary btn-circle">READ MORE</a></div>
-                              <div class="post-classic-footer-right">
-                                <ul class="post-classic-meta">
-                                  <li><span class="icon icon-xxs icon-primary fa fa-heart"></span><span>24</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-eye"></span><span>132</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-calendar-plus-o"></span>
-                                    <time datetime="2016-08-26">26.08.2016</time>
-                                  </li>
-                                </ul>
-                              </div>
+                                <div class="post-classic-footer-left"><a href="./about" class="btn btn-xs btn-primary btn-circle"><?=$text["leerMas"]?></a></div>
                             </div>
                           </div>
                         </article>
@@ -314,26 +236,18 @@
                       <div class="slick-slide-inner">
                         <article class="post-classic"><img src="public/images/blog-3-770x330.jpg" alt="" width="770" height="330" class="post-classic-image"/>
                           <div class="post-classic-body">
-                            <p class="post-classic-title"><a href="single-post.html">What is the Best Coffee in the World?</a></p>
+                            <p class="post-classic-title"><a href="single-post.html"><?=$text["responsabilidadSocial"]?></a></p>
                             <div class="post-classic-text">
-                              <p>Wondering what is the best coffee in the world? Well, we know what it is, and we are ready to share it with you. It is Drumroll speciality coffee. Freshly roasted high quality coffee beans from one of the dozens...</p>
+                              <p><?=$organization->socialresponsability?></p>
                             </div>
                             <div class="post-classic-footer">
-                              <div class="post-classic-footer-left"><a href="single-post.html" class="btn btn-xs btn-primary btn-circle">READ MORE</a></div>
-                              <div class="post-classic-footer-right">
-                                <ul class="post-classic-meta">
-                                  <li><span class="icon icon-xxs icon-primary fa fa-heart"></span><span>24</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-eye"></span><span>132</span></li>
-                                  <li><span class="icon icon-xxs icon-primary fa fa-calendar-plus-o"></span>
-                                    <time datetime="2016-08-26">26.08.2016</time>
-                                  </li>
-                                </ul>
-                              </div>
+                              <div class="post-classic-footer-left"><a href="./about" class="btn btn-xs btn-primary btn-circle"><?=$text["leerMas"]?></a></div>
                             </div>
                           </div>
                         </article>
                       </div>
                     </div>
+                                        
                   </div>
                 </div>
               </div>
@@ -428,61 +342,6 @@
             </div>
           </footer>
 
-        </div>
-        <div id="modalWindow" role="dialog" class="modal fade text-center">
-          <div class="modal-dialog custom-modal-dialog">
-            <div class="custom-modal-content">
-              <button type="button" data-dismiss="modal" class="close"></button>
-              <div class="shell">
-                <div class="box-portfolio"><img src="public/images/barbers-single-1-130x130.jpg" alt="" width="130" height="130" class="box-portfolio-image"/>
-                  <p class="box-portfolio-header">Emma Anderson</p>
-                  <div class="box-portfolio-text">
-                    <p>In 1990 Emma started in the industry like many as a barista. Her career began with Austin Chase Coffee in Gig Harbor, WA and quickly progressed from barista to trainer, to wholesale to new store start-up. Since exhibiting at her first coffee festival in 1992, Emma has worn many hats as part of the industry over the years. She has taught hands on barista training and hosted numerous coffee competitions all across the country. Prior to joining Coffee Shop full time Emma helped support, hire, train, develop and oversee 18 locations for the Forza Coffee Franchise.  Now as the director of business development, Emma gets to combine her many  connections, energy and passion together in one place.</p>
-                  </div>
-                  <ul class="inline-list inline-list-md">
-                    <li><a href="#" class="icon icon-xs link-gray-base fa-facebook"></a></li>
-                    <li><a href="#" class="icon icon-xs link-gray-base fa-twitter"></a></li>
-                    <li><a href="#" class="icon icon-xs link-gray-base fa-linkedin"></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="form-output-global" class="snackbars"></div>
-        <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-          <div class="pswp__bg"></div>
-          <div class="pswp__scroll-wrap">
-            <div class="pswp__container">
-              <div class="pswp__item"></div>
-              <div class="pswp__item"></div>
-              <div class="pswp__item"></div>
-            </div>
-            <div class="pswp__ui pswp__ui--hidden">
-              <div class="pswp__top-bar">
-                <div class="pswp__counter"></div>
-                <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
-                <button title="Share" class="pswp__button pswp__button--share"></button>
-                <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
-                <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-                <div class="pswp__preloader">
-                  <div class="pswp__preloader__icn">
-                    <div class="pswp__preloader__cut">
-                      <div class="pswp__preloader__donut"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-              </div>
-              <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
-              <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
-              <div class="pswp__caption">
-                <div class="pswp__caption__cent"></div>
-              </div>
-            </div>
-          </div>
         </div>
         
         <?php include_once 'views/general/footerAndScript.php';?>

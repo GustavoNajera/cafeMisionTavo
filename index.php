@@ -10,8 +10,12 @@ $routes = [
     "" => "cliente/index.php",
     "service" => "cliente/service.php",
     "about" => "cliente/about.php",
-    "product" => "cliente/singleProduct.php",
-    "testimonials" => "cliente/testimonials.php"
+    "product" => "cliente/detalle.php",
+    "testimonials" => "cliente/testimonials.php",
+    "contact" => "cliente/contact.php",
+    "session" => "cliente/session.php",
+    "gallery" => "cliente/gallery.php",
+    "products" => "cliente/products.php",
 ];
 
 $filtrado = "";

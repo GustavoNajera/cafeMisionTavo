@@ -1,25 +1,33 @@
+<?php 
+    //Si no se especifica el producto a mostrar se redireccionar a la vista de productos
+    if($filtrado == ""){ 
+        header("Location: ./products");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="wide wow-animation">
-    <?php include 'views/general/head.php' ?>
+    <?php include_once 'views/general/head.php' ?>
     
     <?php
-        include_once './business/CommentBusiness.php';
+        //Se obtiene la información de la empresa
+        include_once './business/ProductBusiness.php';
         include_once './business/TextPageBusiness.php';
-        
-        //Se obtienen los comentarios
-        $listComment = (new CommentBusiness())->getAllCommentBusiness();
+        $listProduct = (new ProductBusiness())->getAllproductBusiness();
+        $productDetail = (new ProductBusiness())->getOneproductBusiness($filtrado);
         
         //Se obtienen los textos en el lenguaje elegido
-        $text = (new TextPageBusiness())->getTextByPageBusiness("comment");
+        $text = (new TextPageBusiness())->getTextByPageBusiness("detalle");
         
         //Se obtiene la ruta de las imágenes
         $pathTem = json_decode(file_get_contents("./config.json"),true)["IMG"];
-        $pathUser = $pathTem["imgUser"];
+        $pathProduct = $pathTem["imgProduct"];
         $pathTemplate = $pathTem["imgTemplate"];
     ?>
-    <title><?=$text["TituloPrincipal"]?></title>
     
-    <body>
+    <title><?= $filtrado ?></title>
+    
+    <body>       
         <div class="page">
           <main id="perspective" class="page-content">
             <div class="content-wrapper">
@@ -32,62 +40,71 @@
                 </div>
               </div>
               <div id="wrapper">
-                <div class="page-title">
-                  <div class="page-title-content">
-                    <div class="shell">
-                      <p class="page-title-header"><?=$text["TituloPrincipal"]?></p>
-                      <div class="unit unit-spacimg-md unit-xs-horizontal unit-align-center unit-middle">
-                        <div class="unit-body"><a href="#" class="btn btn-sm btn-circle btn-primary"><?=$text["btnNuevoComment"]?></a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-               
-                <section class="section-xl bg-periglacial-blue text-center">
-                  <div class="shell">
-                    <div class="range range-sm-center range-75">
-                      <div class="cell-xs-12">
-                        <div class="p text-width-medium">
-                          <p class="big"><?=$text["DescripcionPrincipal"]?></p>
-                        </div>
-                      </div>
-                      <div class="cell-xs-12">
-                        <div data-isotope-layout="moduloColumns" class="row isotope">
+                <section class="section-xl bg-periglacial-blue">
+                  <div class="shell"><a href="./products" class="link link-primary link-return">Back</a>
+                      <article class="product-single" style="padding: 3%;">
+                      <div class="product-single-left">
+                        
+                          <div class="cell-sm-6 cell-md-4 height-fill">
+                            <div class="thumbnail-card"><img src="<?=($pathProduct.$productDetail->image)?>" alt="" width="370" height="310" class="thumbnail-card-image"/>
+                            </div>
+                          </div>
                           
-                             <?php foreach ($listComment as $comment){ ?>
-                            
-                                <div class="col-xs-12 col-sm-6 col-md-4 isotope-item">
-                                  <blockquote class="quote-card">
-                                     <div class="quote-fullwidth-left">
-                                        <div class="quote-fullwidth-avatar"><img src="<?=($pathUser . $comment->user->image) ?>" alt="" width="100" height="100"/>
-                                        </div>
-                                      </div>
-                                    <div class="quote-card-header">
-                                      <cite><?=$comment->user->user?></cite>
-                                    </div>
-                                    
-                                    <p class="quote-card-text">
-                                      <q><?=$comment->comment?></q>
-                                    </p>
-                                    
-                                  </blockquote>
-                                </div>
-                            
-                            <?php } ?>
-
-                            
-                        </div>
                       </div>
-                    </div>
+                       <div class="product-single-body">
+                            <p class="product-single-title"><?= $filtrado ?></p>
+                            <div class="product-single-text">
+                                <p><?=$productDetail->description?></p>
+                            </div>
+                        </div>
+                    </article>
                   </div>
                 </section>
+                  
+                <!-- Se muestran los demas prodcutos -->
+                <section class="section-xl bg-gray-dark bg-image text-center">
+                    <div class="shell">
+                      <div class="range range-50">
+                        <div class="cell-xs-12">
+                          <h2><?=$text["productosSimilares"]?></h2>
+                        </div>
+                        <div class="cell-xs-12">
+                          <div class="range range-30">
+                              
+                              
+                            <?php foreach ($listProduct as $product){?>
+                                <div class="cell-sm-6 cell-md-4 height-fill">
+                                  <div class="thumbnail-card"><img src="<?=($pathProduct.$product->image)?>" alt="" width="370" height="310" class="thumbnail-card-image"/>
+                                      <div class="thumbnail-card-body"><a href="./product-<?=$product->nameproduct?>" class="thumbnail-card-header"><?=$product->nameproduct?></a>
+                                      <div class="thumbnail-card-text">
+                                        <p><?=$product->description?></p>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                            <?php }?>
+                              
+                              
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
 
                 <footer class="page-footer page-footer-default">
                   <div class="shell">
                     <div class="range range-xs-center">
-                      <div class="cell-lg-10"><a href="index.html" class="brand"><img src="<?=$pathTemplate?>logo-white-185x41.png" alt="" width="185" height="41"/></a>
+                      <div class="cell-lg-10"><a href="index.html" class="brand"><img src="<?=$pathProduct?>logo-white-185x41.png" alt="" width="185" height="41"/></a>
                         
-                       
                         <div class="divider divider-small divider-light block-centered"></div>
                         <ul class="inline-list inline-list-md">
                           <li><a href="#" class="icon icon-xs link-gray-light fa-facebook"></a></li>
@@ -99,9 +116,8 @@
               </div>
               <div id="perspective-content-overlay"></div>
             </div>
-            
-              
-              <?php include 'views/general/rightMenu.php'; ?>
+            <!-- RD Navbar-->
+            <?php include 'views/general/rightMenu.php' ?>
           </main>
         </div>
         <div id="form-output-global" class="snackbars"></div>
